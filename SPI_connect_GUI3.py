@@ -47,6 +47,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ParamterPlot_button.clicked.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
         self.plot_multi_button.clicked.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
 
+
         # After a file is opened - update GUI        
     def open_file(self):  
         self.spi_tdms.run_open_tdms()
@@ -66,8 +67,6 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         
         
         
-
-
         # Button cliked - select single channel from list
     def listitemclicked(self):
         self.selected_item = self.Parameter_listView.currentItem().text()
@@ -82,6 +81,8 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.x = []
         for i in range(len(items)):
             self.x.append(str(self.Parameter_listView_2.selectedItems()[i].text()))
+            if len(self.x) > 6:
+                self.x.pop(0)
         print(self.x)
         self.logbook.append('Item is added to selection:  ' + self.selected_items)
         return self.x
@@ -115,7 +116,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
                 
             self.spi_tdms.plot_one_channel(canvas, from_t, to_t, channel)
         except:
-            self.logbook.append("No item selected")
+            self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
             
             
     def multi_plot_button(self, canvas, from_t, to_t, multi_channels):
@@ -134,7 +135,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
                 
             self.spi_tdms.plot_multi_ch(canvas, from_t, to_t, multi_channels)
         except:
-            self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting'+"</span>")
+            self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
         
 
     # Canvas on GUI to plot on
