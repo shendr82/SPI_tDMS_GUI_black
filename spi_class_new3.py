@@ -116,7 +116,6 @@ class SPI_tDMS_Data(object):
     def plot_one_channel(self, canvas, from_t=None, to_t=None, channel='Cryo Press 1 (PM2)'):
         x_data = self.get_data_interval(from_t, to_t)
         y_data = self.get_data_interval(from_t, to_t, channel)
-#        plt.plot(x_data[0], y_data[0])
         canvas.fig.clf()
         axes = canvas.fig.add_subplot(111)
         axes.plot(x_data[0], y_data[0])
@@ -135,78 +134,85 @@ class SPI_tDMS_Data(object):
         
         # Compare multiple channels data in function of time - max 6 channels
     def plot_multi_ch(self, canvas, from_t=None, to_t=None, multi_channels=None):
-        print(multi_channels)
         dict1 = {}
         channels_data = multi_channels
         x_data = self.get_data_interval(from_t, to_t, "TimeStamp")
-        for i in channels_data:
-            if i != None:
-                dict1[i] = self.get_data_interval(from_t, to_t, i)
-            else:
-                break
-                
-        channels_no = 0
-        for j in channels_data:
-            if j != None:
-                channels_no+=1
-                
-        nrow=channels_no
-        if channels_no == 2:
-            nrow = 2
-            ncol = 1
-        elif channels_no == 3:
-            nrow = 3
-            ncol = 1
-        elif channels_no == 4:
-            nrow = 2
-            ncol = 2
-        elif channels_no == 5 or 6:
-            nrow = 3
-            ncol = 2
+        if len(channels_data) == 1:
+            self.plot_one_channel(canvas, from_t, to_t, channel = str(channels_data[0]))
         else:
-            ncol=1
+            
+            for i in channels_data:
+                if i != None:
+                    dict1[i] = self.get_data_interval(from_t, to_t, i)
+                else:
+                    break
+                    
+            channels_no = 0
+            for j in channels_data:
+                if j != None:
+                    channels_no+=1
+                    
             nrow=channels_no
-            
-#        fig, axes = plt.subplots(nrow, ncol, sharex=True)
-#        plt.tight_layout()   
-        canvas.fig.clf()
-        axes = canvas.fig.subplots(nrow, ncol, sharex=True)
-        count=0
-        for r in range(nrow):
-            
-            if ncol==1:  
-                axes[r].plot(x_data[0], dict1[channels_data[count]][0])
-                axes[r].set_facecolor('None')
-                axes[r].spines['bottom'].set_color('white')
-                axes[r].spines['top'].set_color('white') 
-                axes[r].spines['right'].set_color('white')
-                axes[r].spines['left'].set_color('white')
-                axes[r].xaxis.label.set_color('white')
-                axes[r].yaxis.label.set_color('white')
-                axes[r].tick_params(colors='white', which='both')
-                axes[r].set_xlabel('Time [s]')
-                axes[r].set_ylabel(channels_data[count] + " [" + dict1[channels_data[count]][1] + "]")
-                count+=1
+            if channels_no == 2:
+                nrow = 2
+                ncol = 1
+            elif channels_no == 3:
+                nrow = 3
+                ncol = 1
+            elif channels_no == 4:
+                nrow = 2
+                ncol = 2
+            elif channels_no == 5 or 6:
+                nrow = 3
+                ncol = 2
             else:
-                for c in range(ncol):
-                    axes[r,c].plot(x_data[0], dict1[channels_data[count]][0])
-                    axes[r,c].set_facecolor('None')
-                    axes[r,c].spines['bottom'].set_color('white')
-                    axes[r,c].spines['top'].set_color('white') 
-                    axes[r,c].spines['right'].set_color('white')
-                    axes[r,c].spines['left'].set_color('white')
-                    axes[r,c].xaxis.label.set_color('white')
-                    axes[r,c].yaxis.label.set_color('white')
-                    axes[r,c].tick_params(colors='white', which='both')
-                    axes[r,c].set_xlabel('Time [s]')
-                    axes[r,c].set_ylabel(channels_data[count] + " [" + dict1[channels_data[count]][1] + "]")
+                ncol=1
+                nrow=channels_no
+                
+            canvas.fig.clf()
+            axes = canvas.fig.subplots(nrow, ncol, sharex=True)
+            count=0
+            for r in range(nrow):
+                
+                if ncol==1:  
+                    axes[r].plot(x_data[0], dict1[channels_data[count]][0])
+                    axes[r].set_facecolor('None')
+                    axes[r].spines['bottom'].set_color('white')
+                    axes[r].spines['top'].set_color('white') 
+                    axes[r].spines['right'].set_color('white')
+                    axes[r].spines['left'].set_color('white')
+                    axes[r].xaxis.label.set_color('white')
+                    axes[r].yaxis.label.set_color('white')
+                    axes[r].tick_params(colors='white', which='both')
+                    axes[r].set_xlabel('Time [s]')
+                    axes[r].set_ylabel(channels_data[count] + " [" + dict1[channels_data[count]][1] + "]")
                     count+=1
-        canvas.draw()
+                else:
+                    for c in range(ncol):
+                        if channels_no==5 and [r,c]==[2,1]:
+                            axes[r,c].plot(0,0)
+                            axes[r,c].set_facecolor('None')
+                            axes[r,c].spines['bottom'].set_color('white')
+                            axes[r,c].spines['top'].set_color('white') 
+                            axes[r,c].spines['right'].set_color('white')
+                            axes[r,c].spines['left'].set_color('white')
+                            axes[r,c].tick_params(colors='white', which='both')                            
+                        else:                      
+                            axes[r,c].plot(x_data[0], dict1[channels_data[count]][0])
+                            axes[r,c].set_facecolor('None')
+                            axes[r,c].spines['bottom'].set_color('white')
+                            axes[r,c].spines['top'].set_color('white') 
+                            axes[r,c].spines['right'].set_color('white')
+                            axes[r,c].spines['left'].set_color('white')
+                            axes[r,c].xaxis.label.set_color('white')
+                            axes[r,c].yaxis.label.set_color('white')
+                            axes[r,c].tick_params(colors='white', which='both')
+                            axes[r,c].set_xlabel('Time [s]')
+                            axes[r,c].set_ylabel(channels_data[count] + " [" + dict1[channels_data[count]][1] + "]")
+                            count+=1
+            canvas.draw()
 
-    
-            
-    # tDMS file - location
-#file = 'C:\\ShendR\\Python\\SPI tDMS\\TDMS files\\20210901_110529_MonitorData.tdms'    
+       
 
 
     # Testing SPI_Data Class methods

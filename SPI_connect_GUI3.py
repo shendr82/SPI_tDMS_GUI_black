@@ -28,6 +28,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Big_graphicsView.setStyleSheet("background-color: rgb(58, 59, 61);\n"
 "border-color: rgb(0, 0, 0);")
         self.gridLayout.addWidget(self.Big_graphicsView, 2, 0, 1, 1)
+        
             # Toolbar on GUI
         self.toolbar = NavigationToolbar(self.Big_graphicsView, self.Big_graphicsView) 
         self.retranslateUi(self)
@@ -43,7 +44,6 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setup_logbook()
             
             # Button cliked - select channel from list
-#        self.ParamterPlot_button.clicked.connect(lambda: self.plot_button(self.Big_graphicsView, self.from_time1.text(), self.to_time1.text(), channel=self.selected_item))
         self.ParamterPlot_button.clicked.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
         self.plot_multi_button.clicked.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
 
@@ -74,6 +74,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         return self.selected_item
     
     
+    
         # Select multiple channels from list - max. 6 channels
     def listitemsclicked(self):
         self.selected_items = self.Parameter_listView_2.currentItem().text()
@@ -82,7 +83,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(len(items)):
             self.x.append(str(self.Parameter_listView_2.selectedItems()[i].text()))
             if len(self.x) > 6:
-                self.x.pop(0)
+                self.x.pop(0)                
         print(self.x)
         self.logbook.append('Item is added to selection:  ' + self.selected_items)
         return self.x
@@ -97,11 +98,11 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(8)        
         self.logbook.append("Welcome to SPI sensor data: Open tDMS file")
         self.logbook.moveCursor(QtGui.QTextCursor.End)
-#        self.logbook.setStyleSheet("color: white; background-color: rbg(58, 59, 61);")
         self.logbook.ensureCursorVisible()
         
         
-        # When Plot Button is pushed - running this method
+        
+        # When Plot Single Channel Button is pushed - running this method
     def plot_button(self, canvas, from_t, to_t, channel):
         try:
             self.logbook.append('Plotting selected item: ' + channel)
@@ -119,11 +120,13 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
             
             
+                
+         # When Plot Multiple Channel Button is pushed - running this method        
     def multi_plot_button(self, canvas, from_t, to_t, multi_channels):
         try:
             no_of_channels = len(multi_channels)
             print("Number of channels selected: " + str(no_of_channels))
-            self.logbook.append("Multiple channels are selected: No. of channels " + str(no_of_channels))
+            self.logbook.append("Number of channels selected: " + str(no_of_channels))
             if from_t == "None":
                 from_t = None
             else:
@@ -131,8 +134,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
             if to_t == "None":
                 to_t = None
             else:
-                to_t = int(to_t)    
-                
+                to_t = int(to_t)   
             self.spi_tdms.plot_multi_ch(canvas, from_t, to_t, multi_channels)
         except:
             self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
