@@ -134,7 +134,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
                 
             self.spi_tdms.plot_multi_ch(canvas, from_t, to_t, multi_channels)
         except:
-            self.logbook.append("No item selected")
+            self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting'+"</span>")
         
 
     # Canvas on GUI to plot on
