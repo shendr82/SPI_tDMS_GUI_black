@@ -45,19 +45,28 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
             
             # Button cliked - select channel from list
         self.ParamterPlot_button.clicked.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
+        self.from_time1.returnPressed.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
+        self.to_time1.returnPressed.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
+#        self.from_time1.returnPressed.connect(lambda: print(self.from_time1.text(), type(self.from_time1.text())))
+#        self.to_time1.returnPressed.connect(lambda: print(self.to_time1.text(), type(self.to_time1.text())))
+        
         self.plot_multi_button.clicked.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
-
+        self.from_time2.returnPressed.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
+        self.to_time2.returnPressed.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
+        
 
         # After a file is opened - update GUI        
-    def open_file(self):  
-        self.spi_tdms.run_open_tdms()
-        shot_id = self.spi_tdms.root_obj_values[0]
-        self.ShotID_box.setText(shot_id)
+    def open_file(self):          
         self.Parameter_listView.clear()
         self.Parameter_listView_2.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.Parameter_listView.setAlternatingRowColors(False)
         self.Parameter_listView_2.clear()
         self.Parameter_listView_2.setAlternatingRowColors(False)
+        self.ShotID_box.clear()
+        self.spi_tdms = spi_class_new3.SPI_tDMS_Data()
+        self.spi_tdms.run_open_tdms()
+        shot_id = self.spi_tdms.root_obj_values[0]
+        self.ShotID_box.setText(shot_id)
         channels = self.spi_tdms.channels
         for i in channels:
             self.Parameter_listView.addItem(str(i))
