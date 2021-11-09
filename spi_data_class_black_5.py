@@ -230,9 +230,8 @@ class SPI_tDMS_Data(object):
                 channels_no+=1
         
         canvas.fig.clf()
-        axes = canvas.fig.subplots(1,1)        
-#        fig, axes = plt.subplots(1,1)
-#        plt.tight_layout()   
+        axes = canvas.fig.subplots(1,1)   
+        
         for i in range(channels_no):
             axes.plot(x_data[0], dict1[channels_data[i]][0], label=channels_data[i])
             axes.set_xlabel('TimeStamp [s]')
@@ -241,15 +240,60 @@ class SPI_tDMS_Data(object):
             axes.spines['top'].set_color('white') 
             axes.spines['right'].set_color('white')
             axes.spines['left'].set_color('white')
-            axes.tick_params(colors='white', which='both')
-            
+            axes.tick_params(colors='white', which='both')           
             legend = axes.legend()
             legend.get_frame().set_facecolor('None')
-#            legend.get_texts().set_color('white')
             for text in legend.get_texts():
                 text.set_color("white")
-    
 
+        canvas.draw()
+        
+        
+        
+                # Return diff. values of given channel
+    def diff_channel(self, from_t=None, to_t=None, channel='T1 - Barrel Temp'):
+        array = self.get_data_interval(from_t, to_t, channel)[0]
+        dchannel = np.diff(array)
+        return dchannel
+            
+            
+        # Plot diff. values of given channels
+    def diff_plot(self, canvas, from_t=None, to_t=None, multi_channels=None):
+        dict1 = {}
+        channels_data = multi_channels
+        if from_t != None:
+            x_data = self.get_data_interval(from_t + 1, to_t, "TimeStamp")
+        else:
+            x_data = self.get_data_interval(1, to_t, "TimeStamp")
+            
+        for i in channels_data:
+            if i != None:
+                dict1[i] = self.diff_channel(from_t, to_t, i)
+            else:
+                break
+                
+        channels_no = 0
+        for j in channels_data:
+            if j != None:
+                channels_no+=1
+                
+        canvas.fig.clf()
+        axes = canvas.fig.subplots(1,1)
+                
+#        fig, axes = plt.subplots(1,1) 
+        for i in range(channels_no):
+            axes.plot(x_data[0], dict1[channels_data[i]], label='diff. ' + channels_data[i])
+            axes.set_xlabel('TimeStamp [s]')    
+            axes.set_facecolor('None')
+            axes.spines['bottom'].set_color('white')
+            axes.spines['top'].set_color('white') 
+            axes.spines['right'].set_color('white')
+            axes.spines['left'].set_color('white')
+            axes.tick_params(colors='white', which='both')           
+            legend = axes.legend()
+            legend.get_frame().set_facecolor('None')
+            for text in legend.get_texts():
+                text.set_color("white")
         canvas.draw()
        
 

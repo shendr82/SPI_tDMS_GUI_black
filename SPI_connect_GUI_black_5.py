@@ -5,11 +5,11 @@ Created on Tue Jul 20 15:21:44 2021
 @author: ShendR
 """
 
-from SPI_GUI4 import Ui_MainWindow
+from SPI_GUI_black_5 import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QVBoxLayout, QDialog
 
-import spi_class_new4
+import spi_data_class_black_5
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -37,7 +37,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         QtCore.QMetaObject.connectSlotsByName(self)
         
             # SPI data Class
-        self.spi_tdms = spi_class_new4.SPI_tDMS_Data()
+        self.spi_tdms = spi_data_class_black_5.SPI_tDMS_Data()
             # Open file with GUI - button or Ctrl+O
         self.menuFile.triggered.connect((lambda: self.open_file()))
         self.actionOpen_TDMS_file.setShortcut('Ctrl+O')
@@ -49,14 +49,14 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ParamterPlot_button.clicked.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
         self.from_time1.returnPressed.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
         self.to_time1.returnPressed.connect(lambda: self.plot_button(self.Big_graphicsView, from_t=self.from_time1.text(), to_t=self.to_time1.text(), channel=self.selected_item))
-#        self.from_time1.returnPressed.connect(lambda: print(self.from_time1.text(), type(self.from_time1.text())))
-#        self.to_time1.returnPressed.connect(lambda: print(self.to_time1.text(), type(self.to_time1.text())))
+        self.filtered_button.clicked.connect(lambda: self.filtered_list())
         
         self.plot_multi_button.clicked.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
         self.from_time2.returnPressed.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
         self.to_time2.returnPressed.connect(lambda: self.multi_plot_button(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
         
         self.overplot_button.clicked.connect(lambda: self.overplot_button1(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
+        self.diff_button.clicked.connect(lambda: self.diff_button_func(self.Big_graphicsView, from_t=self.from_time2.text(), to_t=self.to_time2.text(), multi_channels=self.x))
         
 
         # After a file is opened - update GUI        
@@ -67,7 +67,7 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Parameter_listView_2.clear()
         self.Parameter_listView_2.setAlternatingRowColors(False)
         self.ShotID_box.clear()
-        self.spi_tdms = spi_class_new4.SPI_tDMS_Data()
+        self.spi_tdms = spi_data_class_black_5.SPI_tDMS_Data()
         self.spi_tdms.run_open_tdms()
         shot_id = self.spi_tdms.root_obj_values[0]
         self.ShotID_box.setText(shot_id)
@@ -176,6 +176,54 @@ class SPI_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.spi_tdms.overplot_multi_ch(canvas, from_t, to_t, multi_channels)
         except:
             self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
+ 
+                
+                
+    def diff_button_func(self, canvas, from_t, to_t, multi_channels):
+        try:
+            no_of_channels = len(multi_channels)
+            print("Number of channels selected: " + str(no_of_channels))
+            self.logbook.append("Number of channels selected: " + str(no_of_channels))
+            if from_t == "None":
+                from_t = None
+            else:
+                from_t = int(from_t)
+            if to_t == "None":
+                to_t = None
+            else:
+                to_t = int(to_t)   
+            self.spi_tdms.diff_plot(canvas, from_t, to_t, multi_channels)
+        except:
+            self.logbook.append("<span style=\"color:#ff0000\" >"+'Error plotting request'+"</span>")
+                
+
+                
+    def filtered_list(self):
+        filtered_list = ['Cryo Press 0 (PM1)', 
+                         'Cryo Press 1 (PM2)',
+                         'Cryo Press 2 (PM3)',
+                         'Cryo Press 3 (PM4)',
+                         'Cryo Press 4 (PM5)',
+                         'T1 - Barrel Temp',
+                         'T2 - CHead Bottom',
+                         'T3 - CHead Top',
+                         'T4 - He Connection',
+                         'T5 - He Distributor',
+                         'T6 - Heat Shield',
+                         'T7 - HeatExc DownStr ',
+                         'T8 - HeatExc UpStr']
+        
+        self.Parameter_listView.clear()
+        self.Parameter_listView_2.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.Parameter_listView.setAlternatingRowColors(False)
+        self.Parameter_listView_2.clear()
+        self.Parameter_listView_2.setAlternatingRowColors(False)
+        for i in filtered_list:
+            self.Parameter_listView.addItem(str(i))
+            self.Parameter_listView_2.addItem(str(i))
+        self.Parameter_listView.itemClicked.connect(self.listitemclicked)
+        self.Parameter_listView_2.itemClicked.connect(self.listitemsclicked)
+        
                 
                 
                 

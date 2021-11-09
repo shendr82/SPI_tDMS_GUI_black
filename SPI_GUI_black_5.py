@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'SPI_GUI5.ui'
+# Form implementation generated from reading ui file 'SPI_GUI_black_6.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -138,17 +138,20 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         spacerItem3 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem3, 2, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem4, 3, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        self.gridLayout_2.addItem(spacerItem5, 5, 1, 1, 1)
-        self.ParamterPlot_button = QtWidgets.QPushButton(self.tab_6)
-        self.ParamterPlot_button.setMinimumSize(QtCore.QSize(300, 60))
-        self.ParamterPlot_button.setMaximumSize(QtCore.QSize(300, 60))
+        self.Parameters_group = QtWidgets.QGroupBox(self.tab_6)
+        self.Parameters_group.setMinimumSize(QtCore.QSize(0, 270))
         font = QtGui.QFont()
-        font.setPointSize(10)
-        self.ParamterPlot_button.setFont(font)
-        self.ParamterPlot_button.setStyleSheet("QPushButton{\n"
+        font.setPointSize(11)
+        self.Parameters_group.setFont(font)
+        self.Parameters_group.setStyleSheet("border-color: rgb(255, 255, 255);")
+        self.Parameters_group.setObjectName("Parameters_group")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.Parameters_group)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem4, 3, 0, 1, 1)
+        self.filtered_button = QtWidgets.QPushButton(self.Parameters_group)
+        self.filtered_button.setMinimumSize(QtCore.QSize(200, 30))
+        self.filtered_button.setStyleSheet("QPushButton{\n"
 "background-color: rgb(0, 0, 0);\n"
 "color: rgb(255, 255, 255);\n"
 "    background-color: qlineargradient(spread:reflect, x1:1, y1:1, x2:1, y2:0.528, stop:0 rgba(71, 71, 71, 255), stop:1 rgba(0, 0, 0, 255));\n"
@@ -164,17 +167,98 @@ class Ui_MainWindow(object):
 "    background-color: rgb(70, 70, 70);\n"
 "}\n"
 "")
-        self.ParamterPlot_button.setObjectName("ParamterPlot_button")
-        self.gridLayout_2.addWidget(self.ParamterPlot_button, 2, 1, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem6, 2, 2, 1, 1)
+        self.filtered_button.setObjectName("filtered_button")
+        self.gridLayout_6.addWidget(self.filtered_button, 3, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem5, 3, 2, 1, 1)
+        self.Time_group = QtWidgets.QGroupBox(self.Parameters_group)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Time_group.setFont(font)
+        self.Time_group.setObjectName("Time_group")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.Time_group)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.to_label1 = QtWidgets.QLabel(self.Time_group)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.to_label1.setFont(font)
+        self.to_label1.setObjectName("to_label1")
+        self.gridLayout_3.addWidget(self.to_label1, 0, 2, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem6, 1, 3, 1, 1)
+        self.from_label1 = QtWidgets.QLabel(self.Time_group)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.from_label1.setFont(font)
+        self.from_label1.setObjectName("from_label1")
+        self.gridLayout_3.addWidget(self.from_label1, 0, 1, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem7, 1, 0, 1, 1)
+        self.from_time1 = QtWidgets.QLineEdit(self.Time_group)
+        self.from_time1.setMinimumSize(QtCore.QSize(200, 40))
+        self.from_time1.setMaximumSize(QtCore.QSize(200, 40))
+        self.from_time1.setStyleSheet("background-color: rgb(58, 59, 61);\n"
+"color: rgb(85, 170, 255);\n"
+"border: None;\n"
+"")
+        self.from_time1.setAlignment(QtCore.Qt.AlignCenter)
+        self.from_time1.setObjectName("from_time1")
+        self.gridLayout_3.addWidget(self.from_time1, 1, 1, 1, 1)
+        self.to_time1 = QtWidgets.QLineEdit(self.Time_group)
+        self.to_time1.setMinimumSize(QtCore.QSize(200, 40))
+        self.to_time1.setMaximumSize(QtCore.QSize(200, 40))
+        self.to_time1.setStyleSheet("background-color: rgb(58, 59, 61);\n"
+"color: rgb(85, 170, 255);\n"
+"border: None;")
+        self.to_time1.setAlignment(QtCore.Qt.AlignCenter)
+        self.to_time1.setObjectName("to_time1")
+        self.gridLayout_3.addWidget(self.to_time1, 1, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.Time_group, 1, 0, 1, 3)
+        self.scrollArea = QtWidgets.QScrollArea(self.Parameters_group)
+        self.scrollArea.setMinimumSize(QtCore.QSize(0, 300))
+        self.scrollArea.setMaximumSize(QtCore.QSize(16777215, 300))
+        self.scrollArea.setStyleSheet("Border: None;\n"
+"")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 514, 300))
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents_2)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.Parameter_listView = QtWidgets.QListWidget(self.scrollAreaWidgetContents_2)
+        self.Parameter_listView.setStyleSheet("QListWidget{\n"
+"background-color: rgb(58, 59, 61);\n"
+"border: None;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected\n"
+"{\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
+"    background: rgb(30,30,30);\n"
+"}")
+        self.Parameter_listView.setAlternatingRowColors(True)
+        self.Parameter_listView.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.Parameter_listView.setViewMode(QtWidgets.QListView.ListMode)
+        self.Parameter_listView.setObjectName("Parameter_listView")
+        self.gridLayout_5.addWidget(self.Parameter_listView, 0, 0, 1, 1)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+        self.gridLayout_6.addWidget(self.scrollArea, 0, 0, 1, 3)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_6.addItem(spacerItem8, 4, 1, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_6.addItem(spacerItem9, 2, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.Parameters_group, 0, 0, 1, 3)
+        spacerItem10 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem10, 3, 1, 1, 1)
         self.widget = QtWidgets.QWidget(self.tab_6)
         self.widget.setMinimumSize(QtCore.QSize(0, 150))
         self.widget.setObjectName("widget")
         self.gridLayout_9 = QtWidgets.QGridLayout(self.widget)
         self.gridLayout_9.setObjectName("gridLayout_9")
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_9.addItem(spacerItem7, 3, 0, 1, 1)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_9.addItem(spacerItem11, 3, 0, 1, 1)
         self.mean_label = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
         font.setPointSize(11)
@@ -226,10 +310,10 @@ class Ui_MainWindow(object):
         self.min_lineEdit.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.min_lineEdit.setObjectName("min_lineEdit")
         self.gridLayout_9.addWidget(self.min_lineEdit, 3, 2, 1, 1)
-        spacerItem8 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_9.addItem(spacerItem8, 1, 1, 1, 1)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_9.addItem(spacerItem9, 3, 3, 1, 1)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_9.addItem(spacerItem12, 1, 1, 1, 1)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_9.addItem(spacerItem13, 3, 3, 1, 1)
         self.basicinfo_label = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -238,97 +322,68 @@ class Ui_MainWindow(object):
         self.basicinfo_label.setObjectName("basicinfo_label")
         self.gridLayout_9.addWidget(self.basicinfo_label, 0, 0, 1, 3)
         self.gridLayout_2.addWidget(self.widget, 4, 1, 1, 1)
-        spacerItem10 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem10, 1, 1, 1, 1)
-        self.Parameters_group = QtWidgets.QGroupBox(self.tab_6)
-        self.Parameters_group.setMinimumSize(QtCore.QSize(0, 270))
+        spacerItem14 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem14, 1, 1, 1, 1)
+        self.ParamterPlot_button = QtWidgets.QPushButton(self.tab_6)
+        self.ParamterPlot_button.setMinimumSize(QtCore.QSize(300, 60))
+        self.ParamterPlot_button.setMaximumSize(QtCore.QSize(300, 60))
         font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Parameters_group.setFont(font)
-        self.Parameters_group.setStyleSheet("border-color: rgb(255, 255, 255);")
-        self.Parameters_group.setObjectName("Parameters_group")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.Parameters_group)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.scrollArea = QtWidgets.QScrollArea(self.Parameters_group)
-        self.scrollArea.setMinimumSize(QtCore.QSize(0, 300))
-        self.scrollArea.setMaximumSize(QtCore.QSize(16777215, 300))
-        self.scrollArea.setStyleSheet("Border: None;\n"
-"")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 514, 300))
-        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents_2)
-        self.gridLayout_5.setObjectName("gridLayout_5")
-        self.Parameter_listView = QtWidgets.QListWidget(self.scrollAreaWidgetContents_2)
-        self.Parameter_listView.setStyleSheet("QListWidget{\n"
-"background-color: rgb(58, 59, 61);\n"
+        font.setPointSize(10)
+        self.ParamterPlot_button.setFont(font)
+        self.ParamterPlot_button.setStyleSheet("QPushButton{\n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"    background-color: qlineargradient(spread:reflect, x1:1, y1:1, x2:1, y2:0.528, stop:0 rgba(71, 71, 71, 255), stop:1 rgba(0, 0, 0, 255));\n"
 "border: None;\n"
+"pressed: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
-"QListWidget::item:selected\n"
-"{\n"
-"    \n"
-"    color: rgb(255, 255, 255);\n"
-"    background: rgb(30,30,30);\n"
-"}")
-        self.Parameter_listView.setAlternatingRowColors(True)
-        self.Parameter_listView.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.Parameter_listView.setViewMode(QtWidgets.QListView.ListMode)
-        self.Parameter_listView.setObjectName("Parameter_listView")
-        self.gridLayout_5.addWidget(self.Parameter_listView, 0, 0, 1, 1)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
-        self.gridLayout_6.addWidget(self.scrollArea, 0, 0, 1, 3)
-        self.Time_group = QtWidgets.QGroupBox(self.Parameters_group)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Time_group.setFont(font)
-        self.Time_group.setObjectName("Time_group")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.Time_group)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.to_label1 = QtWidgets.QLabel(self.Time_group)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.to_label1.setFont(font)
-        self.to_label1.setObjectName("to_label1")
-        self.gridLayout_3.addWidget(self.to_label1, 0, 2, 1, 1)
-        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem11, 1, 3, 1, 1)
-        self.from_label1 = QtWidgets.QLabel(self.Time_group)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.from_label1.setFont(font)
-        self.from_label1.setObjectName("from_label1")
-        self.gridLayout_3.addWidget(self.from_label1, 0, 1, 1, 1)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem12, 1, 0, 1, 1)
-        self.from_time1 = QtWidgets.QLineEdit(self.Time_group)
-        self.from_time1.setMinimumSize(QtCore.QSize(200, 40))
-        self.from_time1.setMaximumSize(QtCore.QSize(200, 40))
-        self.from_time1.setStyleSheet("background-color: rgb(58, 59, 61);\n"
-"color: rgb(85, 170, 255);\n"
-"border: None;\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color: rgb(70, 70, 70);\n"
+"}\n"
 "")
-        self.from_time1.setAlignment(QtCore.Qt.AlignCenter)
-        self.from_time1.setObjectName("from_time1")
-        self.gridLayout_3.addWidget(self.from_time1, 1, 1, 1, 1)
-        self.to_time1 = QtWidgets.QLineEdit(self.Time_group)
-        self.to_time1.setMinimumSize(QtCore.QSize(200, 40))
-        self.to_time1.setMaximumSize(QtCore.QSize(200, 40))
-        self.to_time1.setStyleSheet("background-color: rgb(58, 59, 61);\n"
-"color: rgb(85, 170, 255);\n"
-"border: None;")
-        self.to_time1.setAlignment(QtCore.Qt.AlignCenter)
-        self.to_time1.setObjectName("to_time1")
-        self.gridLayout_3.addWidget(self.to_time1, 1, 2, 1, 1)
-        self.gridLayout_6.addWidget(self.Time_group, 1, 0, 1, 3)
-        self.gridLayout_2.addWidget(self.Parameters_group, 0, 0, 1, 3)
+        self.ParamterPlot_button.setObjectName("ParamterPlot_button")
+        self.gridLayout_2.addWidget(self.ParamterPlot_button, 2, 1, 1, 1)
+        spacerItem15 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem15, 2, 2, 1, 1)
         self.tab_widget.addTab(self.tab_6, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.tab)
         self.gridLayout_7.setObjectName("gridLayout_7")
+        spacerItem16 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem16, 2, 0, 1, 1)
+        spacerItem17 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem17, 2, 2, 1, 1)
+        spacerItem18 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_7.addItem(spacerItem18, 1, 1, 1, 1)
+        self.overplot_button = QtWidgets.QPushButton(self.tab)
+        self.overplot_button.setMinimumSize(QtCore.QSize(300, 60))
+        self.overplot_button.setMaximumSize(QtCore.QSize(300, 60))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.overplot_button.setFont(font)
+        self.overplot_button.setStyleSheet("QPushButton{\n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"    background-color: qlineargradient(spread:reflect, x1:1, y1:1, x2:1, y2:0.528, stop:0 rgba(71, 71, 71, 255), stop:1 rgba(0, 0, 0, 255));\n"
+"border: None;\n"
+"pressed: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color: rgb(70, 70, 70);\n"
+"}")
+        self.overplot_button.setObjectName("overplot_button")
+        self.gridLayout_7.addWidget(self.overplot_button, 3, 1, 1, 1)
         self.Parameters_group_2 = QtWidgets.QGroupBox(self.tab)
         self.Parameters_group_2.setMinimumSize(QtCore.QSize(0, 270))
         font = QtGui.QFont()
@@ -344,13 +399,13 @@ class Ui_MainWindow(object):
         self.to_label1_2 = QtWidgets.QLabel(self.Time_group_2)
         self.to_label1_2.setObjectName("to_label1_2")
         self.gridLayout_4.addWidget(self.to_label1_2, 0, 2, 1, 1)
-        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem13, 1, 3, 1, 1)
+        spacerItem19 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem19, 1, 3, 1, 1)
         self.from_label1_2 = QtWidgets.QLabel(self.Time_group_2)
         self.from_label1_2.setObjectName("from_label1_2")
         self.gridLayout_4.addWidget(self.from_label1_2, 0, 1, 1, 1)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem14, 1, 0, 1, 1)
+        spacerItem20 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem20, 1, 0, 1, 1)
         self.from_time2 = QtWidgets.QLineEdit(self.Time_group_2)
         self.from_time2.setMinimumSize(QtCore.QSize(200, 40))
         self.from_time2.setMaximumSize(QtCore.QSize(200, 40))
@@ -377,7 +432,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_3 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 107, 279))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 514, 300))
         self.scrollAreaWidgetContents_3.setObjectName("scrollAreaWidgetContents_3")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents_3)
         self.gridLayout_8.setObjectName("gridLayout_8")
@@ -399,10 +454,6 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_3)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.scrollArea_2)
         self.gridLayout_7.addWidget(self.Parameters_group_2, 0, 0, 1, 3)
-        spacerItem15 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_7.addItem(spacerItem15, 1, 1, 1, 1)
-        spacerItem16 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_7.addItem(spacerItem16, 2, 0, 1, 1)
         self.plot_multi_button = QtWidgets.QPushButton(self.tab)
         self.plot_multi_button.setMinimumSize(QtCore.QSize(300, 60))
         self.plot_multi_button.setMaximumSize(QtCore.QSize(300, 60))
@@ -426,15 +477,15 @@ class Ui_MainWindow(object):
 "}")
         self.plot_multi_button.setObjectName("plot_multi_button")
         self.gridLayout_7.addWidget(self.plot_multi_button, 2, 1, 1, 1)
-        spacerItem17 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_7.addItem(spacerItem17, 2, 2, 1, 1)
-        self.overplot_button = QtWidgets.QPushButton(self.tab)
-        self.overplot_button.setMinimumSize(QtCore.QSize(300, 60))
-        self.overplot_button.setMaximumSize(QtCore.QSize(300, 60))
+        spacerItem21 = QtWidgets.QSpacerItem(20, 170, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_7.addItem(spacerItem21, 5, 1, 1, 1)
+        self.diff_button = QtWidgets.QPushButton(self.tab)
+        self.diff_button.setMinimumSize(QtCore.QSize(300, 60))
+        self.diff_button.setMaximumSize(QtCore.QSize(300, 60))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.overplot_button.setFont(font)
-        self.overplot_button.setStyleSheet("QPushButton{\n"
+        self.diff_button.setFont(font)
+        self.diff_button.setStyleSheet("QPushButton{\n"
 "background-color: rgb(0, 0, 0);\n"
 "color: rgb(255, 255, 255);\n"
 "    background-color: qlineargradient(spread:reflect, x1:1, y1:1, x2:1, y2:0.528, stop:0 rgba(71, 71, 71, 255), stop:1 rgba(0, 0, 0, 255));\n"
@@ -449,10 +500,8 @@ class Ui_MainWindow(object):
 "QPushButton:pressed{\n"
 "    background-color: rgb(70, 70, 70);\n"
 "}")
-        self.overplot_button.setObjectName("overplot_button")
-        self.gridLayout_7.addWidget(self.overplot_button, 3, 1, 1, 1)
-        spacerItem18 = QtWidgets.QSpacerItem(20, 170, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_7.addItem(spacerItem18, 4, 1, 1, 1)
+        self.diff_button.setObjectName("diff_button")
+        self.gridLayout_7.addWidget(self.diff_button, 4, 1, 1, 1)
         self.tab_widget.addTab(self.tab, "")
         self.horizontalLayout_5.addWidget(self.tab_widget)
         self.gridLayout.addLayout(self.horizontalLayout_5, 1, 1, 3, 1)
@@ -516,7 +565,13 @@ class Ui_MainWindow(object):
         self.SPI_sensor_title_2.setText(_translate("MainWindow", "sensor data"))
         self.ShotID_label.setText(_translate("MainWindow", "Shot ID:"))
         self.ShotID_box.setText(_translate("MainWindow", "shotID"))
-        self.ParamterPlot_button.setText(_translate("MainWindow", "Plot sensor data"))
+        self.Parameters_group.setTitle(_translate("MainWindow", "List of sensors"))
+        self.filtered_button.setText(_translate("MainWindow", "Filter preset channels"))
+        self.Time_group.setTitle(_translate("MainWindow", "Time window"))
+        self.to_label1.setText(_translate("MainWindow", "To:"))
+        self.from_label1.setText(_translate("MainWindow", "From:"))
+        self.from_time1.setText(_translate("MainWindow", "None"))
+        self.to_time1.setText(_translate("MainWindow", "None"))
         self.mean_label.setText(_translate("MainWindow", "Mean value"))
         self.mean_lineEdit.setText(_translate("MainWindow", "0"))
         self.max_label.setText(_translate("MainWindow", "Max. value"))
@@ -524,13 +579,9 @@ class Ui_MainWindow(object):
         self.min_label.setText(_translate("MainWindow", "Min. value"))
         self.min_lineEdit.setText(_translate("MainWindow", "0"))
         self.basicinfo_label.setText(_translate("MainWindow", "Basic info. for time window"))
-        self.Parameters_group.setTitle(_translate("MainWindow", "List of sensors"))
-        self.Time_group.setTitle(_translate("MainWindow", "Time window"))
-        self.to_label1.setText(_translate("MainWindow", "To:"))
-        self.from_label1.setText(_translate("MainWindow", "From:"))
-        self.from_time1.setText(_translate("MainWindow", "None"))
-        self.to_time1.setText(_translate("MainWindow", "None"))
+        self.ParamterPlot_button.setText(_translate("MainWindow", "Plot sensor data"))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_6), _translate("MainWindow", "Single ch."))
+        self.overplot_button.setText(_translate("MainWindow", "Overplot selected sensors"))
         self.Parameters_group_2.setTitle(_translate("MainWindow", "List of sensors"))
         self.Time_group_2.setTitle(_translate("MainWindow", "Time window"))
         self.to_label1_2.setText(_translate("MainWindow", "To:"))
@@ -538,7 +589,7 @@ class Ui_MainWindow(object):
         self.from_time2.setText(_translate("MainWindow", "None"))
         self.to_time2.setText(_translate("MainWindow", "None"))
         self.plot_multi_button.setText(_translate("MainWindow", "Plot multiple sensors"))
-        self.overplot_button.setText(_translate("MainWindow", "Overplot selected sensors"))
+        self.diff_button.setText(_translate("MainWindow", "Plot differential values"))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab), _translate("MainWindow", "Multi ch."))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
