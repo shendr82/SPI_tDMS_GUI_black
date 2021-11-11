@@ -231,20 +231,37 @@ class SPI_tDMS_Data(object):
         
         canvas.fig.clf()
         axes = canvas.fig.subplots(1,1)   
+        part1 = axes.twinx()
         
         for i in range(channels_no):
-            axes.plot(x_data[0], dict1[channels_data[i]][0], label=channels_data[i])
-            axes.set_xlabel('TimeStamp [s]')
-            axes.set_facecolor('None')
-            axes.spines['bottom'].set_color('white')
-            axes.spines['top'].set_color('white') 
-            axes.spines['right'].set_color('white')
-            axes.spines['left'].set_color('white')
-            axes.tick_params(colors='white', which='both')           
-            legend = axes.legend()
-            legend.get_frame().set_facecolor('None')
-            for text in legend.get_texts():
-                text.set_color("white")
+            if dict1[channels_data[0]][1] == dict1[channels_data[i]][1]:
+                axes.plot(x_data[0], dict1[channels_data[i]][0], label=channels_data[i])
+                axes.set_ylabel(channels_data[i] + " [" + dict1[channels_data[i]][1] + "]")
+                axes.set_facecolor('None')
+                axes.spines['bottom'].set_color('white')
+                axes.spines['top'].set_color('white') 
+                axes.spines['right'].set_color('white')
+                axes.spines['left'].set_color('white')
+                axes.tick_params(colors='white', which='both')           
+                legend = axes.legend(loc='upper left')
+                legend.get_frame().set_facecolor('None')
+                for text in legend.get_texts():
+                    text.set_color("white")
+            else:
+                part1.plot(x_data[0], dict1[channels_data[i]][0], label=channels_data[i])
+                part1.set_ylabel(channels_data[i] + " [" + dict1[channels_data[i]][1] + "]")
+                part1.set_facecolor('None')
+                part1.spines['bottom'].set_color('white')
+                part1.spines['top'].set_color('white') 
+                part1.spines['right'].set_color('white')
+                part1.spines['left'].set_color('white')
+                part1.tick_params(colors='white', which='both')           
+                legend = part1.legend(loc='upper right')
+                legend.get_frame().set_facecolor('None')
+                for text in legend.get_texts():
+                    text.set_color("white")
+            axes.set_xlabel('TimeStamp [s]')   
+
 
         canvas.draw()
         
